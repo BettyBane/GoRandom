@@ -1,3 +1,4 @@
+
 export const state = () => ({
     countries: {},
     num1: 0,
@@ -8,13 +9,12 @@ export const getters = {
 }
 
 export const actions = {
-    RandomizeCode() {
+    RandomizeCode({commit}) {
         const num1 = Math.floor(Math.random() * 250);
-        // eslint-disable-next-line no-undef
         commit("RandomizeCode", num1);
         return num1;
     },
-    async getSth(i){
+    async getSth({commit}, i){
         const {data} = await this.$axios.post('https://countries.trevorblades.com/graphql',
             {
                 query: `
@@ -40,7 +40,6 @@ export const actions = {
             }
         );
         const countries = data.data.countries[i];
-        // eslint-disable-next-line no-undef
         commit("getSth", countries);
         return countries;
     },

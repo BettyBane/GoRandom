@@ -19,14 +19,8 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
     export default {
       name: 'InspirePage',
-        data(){ return {}},
-        computed: mapState(['num1', 'countries']),
-        methods: {
-          ...mapActions(['RandomizeCode', 'getSth'])
-        } 
     }
 
 </script>

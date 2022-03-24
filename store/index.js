@@ -1,7 +1,7 @@
 
 export const state = () => ({
-    countries: {},
-    num1: 0,
+    country: null,
+    randNum: 0,
 })
 
 export const getters = {
@@ -9,12 +9,12 @@ export const getters = {
 }
 
 export const actions = {
-    RandomizeCode({commit}) {
-        const num1 = Math.floor(Math.random() * 250);
-        commit("RandomizeCode", num1);
-        return num1;
+    getRandNum({commit}) {
+        const randNum = Math.floor(Math.random() * 250);
+        commit("getRandNum", randNum);
+        return randNum;
     },
-    async getSth({commit}, i){
+    async getCountry({commit}, i){
         const {data} = await this.$axios.post('https://countries.trevorblades.com/graphql',
             {
                 query: `
@@ -39,18 +39,18 @@ export const actions = {
                         }`
             }
         );
-        const countries = data.data.countries[i];
-        commit("getSth", countries);
-        return countries;
+        const country = data.data.countries[i];
+        commit("getCountry", country);
+        return country;
     },
 }
 
 
 export const mutations = {
-    getSth(state, countries) {
-        state.countries = {...countries};
+    getCountry(state, country) {
+        state.country = {...country};
     },
-    RandomizeCode(state, num1) {
-        state.num1 = num1;
+    getRandNum(state, randNum) {
+        state.randNum = randNum;
     }
 }

@@ -1,21 +1,20 @@
 <template>
     <div>
     <v-container>
-        <v-btn class="randBtn" @click="RandomizeCode" >
+        <!-- <v-btn class="randBtn" @click="getRandNum" >
             RANDOMIZE!  
+        </v-btn> -->
+        <p v-if="randNum"> You got the lucky number: {{ randNum }}! </p>
+        <v-btn v-if="randNum" class="randBtn" @click="getCountry(randNum)" >
+            GET COUNTRY {{ randNum }}  
         </v-btn>
-        <p v-if="num1"> {{ num1 }} </p>
-        <v-btn class="randBtn" @click="getSth(num1)" >
-            GET GET GET!  
-        </v-btn>
-        <p> {{ countries.name }}</p>
+        <p v-if="country"> {{ country.name }}</p>
     </v-container>
     <NuxtLink to="/inspire" >
         <v-container>
-            <v-btn class="expBtn">Explore Country</v-btn>
+            <v-btn v-if="country" class="expBtn">Explore Country</v-btn>
         </v-container>
-    </NuxtLink>
-    
+    </NuxtLink>   
     </div>
 </template>
 
@@ -26,9 +25,9 @@ import {mapState, mapActions} from 'vuex'
             return {
             }   
         },
-        computed: mapState(['num1', 'countries']),       
+        computed: mapState(['randNum', 'country']),       
         methods: {
-            ...mapActions(['RandomizeCode', 'getSth'])
+            ...mapActions(['getRandNum', 'getCountry'])
         }
     }
 </script>
